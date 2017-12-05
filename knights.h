@@ -34,7 +34,17 @@ Path moves(const pair<int, int> & initialPair) {
 }
 
 Path legal_moves(const int & size, const Path & path, const pair<int, int> & position) {
-    // TODO
+    Path pathOfMoves = moves(position);
+    Path legalPath = Path();
+    std::copy_if(pathOfMoves.begin(),
+                 pathOfMoves.end(),
+                 std::back_inserter(legalPath),
+                 [size, path](const pair<int, int> & pairPos) {
+                                  bool inside = (pairPos.first >= 0) && (size > pairPos.first) && (pairPos.second >= 0) && (size > pairPos.second);
+                                  bool inPath = path.end() != std::find(path.begin(), path.end(), pairPos);
+                                  return !inPath && inside;
+                 });
+    return legalPath;
 }
 
 pair<Path, bool> first_tour(const int & size, const Path & path) {
