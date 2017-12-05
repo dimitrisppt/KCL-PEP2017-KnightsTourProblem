@@ -23,6 +23,23 @@ pair<int,int> operator+(const pair<int,int> & a, const pair<int,int> & b) {
 
 // TODO - your code goes here
 
+Path moves(const pair<int, int> & initialPair) {
+
+    Path path = Path();
+    path.emplace_back(initialPair.first+1, initialPair.second+2); path.emplace_back(initialPair.first+2, initialPair.second+1);
+    path.emplace_back(initialPair.first+2, initialPair.second-1); path.emplace_back(initialPair.first+1, initialPair.second-2);
+    path.emplace_back(initialPair.first-1, initialPair.second-2); path.emplace_back(initialPair.first-2, initialPair.second-1);
+    path.emplace_back(initialPair.first-2, initialPair.second+1); path.emplace_back(initialPair.first-1, initialPair.second+2);
+    return path;
+}
+
+Path legal_moves(const int & size, const Path & path, const pair<int, int> & position) {
+    // TODO
+}
+
+pair<Path, bool> first_tour(const int & size, const Path & path) {
+    // TODO
+};
 
 
 
