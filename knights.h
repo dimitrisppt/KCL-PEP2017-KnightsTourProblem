@@ -63,8 +63,9 @@ pair<Path, bool> first_tour(const int & size, const Path & path) {
         Path copy(path);
         copy.push_back(legalMoves[i]);
         auto recursiveVar = first_tour(size, copy);
-        return make_pair(recursiveVar.first, true);
-
+        if(recursiveVar.second) {
+            return make_pair(recursiveVar.first, true);
+        }
     }
 
     if ((size * size) == path.size()) {
