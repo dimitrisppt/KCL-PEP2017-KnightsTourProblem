@@ -49,9 +49,7 @@ Path legal_moves(const int & size, const Path & path, const pair<int, int> & pos
 
 pair<Path, bool> first_tour(const int & size, const Path & path) {
 
-    auto startingPos = path.back();
-    auto legalMoves = legal_moves(size, path, startingPos);
-
+    auto legalMoves = (legal_moves(size, path, path.back()));
     std::sort(legalMoves.begin(),
               legalMoves.end(),
               [size, path](pair<int, int> & firstPair, pair<int, int> & secondPair) {
@@ -59,19 +57,19 @@ pair<Path, bool> first_tour(const int & size, const Path & path) {
                   return legal_moves(size, path, secondPair).size() > legal_moves(size, path, firstPair).size();
               });
 
-    for (int i = 0; i < legalMoves.size(); ++i) {
+    for (int index = 0; index < legalMoves.size(); ++index) {
         Path copy(path);
-        copy.push_back(legalMoves[i]);
+        copy.push_back(legalMoves[index]);
         auto recursiveVar = first_tour(size, copy);
         if(recursiveVar.second) {
             return make_pair(recursiveVar.first, true);
         }
     }
 
-    if ((size * size) == path.size()) {
-        return make_pair(path, true);
-    } else {
+    if ((size * size) != path.size()) {
         return make_pair(Path(), false);
+    } else {
+        return make_pair(path, true);
     }
 };
 
