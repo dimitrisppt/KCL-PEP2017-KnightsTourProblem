@@ -14,7 +14,7 @@
 template <typename T>
 int bestProfit(T begin, T end) {
     int first = *begin;
-    return std::accumulate(begin, end, 0, [&first](int bProfit, int & price) {
+    return std::accumulate(begin, end, 0, [&first](int bProfit, const int & price) {
                if (first > price){
                     first = price;
                }
